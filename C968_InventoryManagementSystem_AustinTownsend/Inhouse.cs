@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace C968_InventoryManagementSystem_AustinTownsend
 {
-    internal class Inhouse
+    public class Inhouse : Part
     {
+        public int MachineID { get; set; }
     }
 }

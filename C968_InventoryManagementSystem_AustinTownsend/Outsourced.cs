@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace C968_InventoryManagementSystem_AustinTownsend
 {
-    internal class Outsourced
+    public class Outsourced : Part
     {
+        public string CompanyName { get; set; }
     }
 }
