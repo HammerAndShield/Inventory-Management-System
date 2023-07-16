@@ -79,6 +79,7 @@
             // 
             AddProductIDTextbox.Location = new Point(167, 213);
             AddProductIDTextbox.Name = "AddProductIDTextbox";
+            AddProductIDTextbox.ReadOnly = true;
             AddProductIDTextbox.Size = new Size(173, 27);
             AddProductIDTextbox.TabIndex = 2;
             // 
@@ -173,9 +174,10 @@
             AddProductAllPartsDGV.AllowUserToDeleteRows = false;
             AddProductAllPartsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             AddProductAllPartsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            AddProductAllPartsDGV.Enabled = false;
+            AddProductAllPartsDGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             AddProductAllPartsDGV.Location = new Point(545, 98);
             AddProductAllPartsDGV.Name = "AddProductAllPartsDGV";
+            AddProductAllPartsDGV.ReadOnly = true;
             AddProductAllPartsDGV.RowHeadersVisible = false;
             AddProductAllPartsDGV.RowHeadersWidth = 51;
             AddProductAllPartsDGV.RowTemplate.Height = 29;
@@ -189,9 +191,10 @@
             AddProductAssociatedPartsDGV.AllowUserToDeleteRows = false;
             AddProductAssociatedPartsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             AddProductAssociatedPartsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            AddProductAssociatedPartsDGV.Enabled = false;
+            AddProductAssociatedPartsDGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             AddProductAssociatedPartsDGV.Location = new Point(545, 401);
             AddProductAssociatedPartsDGV.Name = "AddProductAssociatedPartsDGV";
+            AddProductAssociatedPartsDGV.ReadOnly = true;
             AddProductAssociatedPartsDGV.RowHeadersVisible = false;
             AddProductAssociatedPartsDGV.RowHeadersWidth = 51;
             AddProductAssociatedPartsDGV.RowTemplate.Height = 29;
@@ -228,6 +231,7 @@
             AddProductAddButton.TabIndex = 17;
             AddProductAddButton.Text = "Add";
             AddProductAddButton.UseVisualStyleBackColor = true;
+            AddProductAddButton.Click += AddProductAddButton_Click;
             // 
             // AddProductDeleteButton
             // 
@@ -238,6 +242,7 @@
             AddProductDeleteButton.TabIndex = 18;
             AddProductDeleteButton.Text = "Delete";
             AddProductDeleteButton.UseVisualStyleBackColor = true;
+            AddProductDeleteButton.Click += AddProductDeleteButton_Click;
             // 
             // AddProductsSaveButton
             // 
@@ -248,6 +253,7 @@
             AddProductsSaveButton.TabIndex = 19;
             AddProductsSaveButton.Text = "Save";
             AddProductsSaveButton.UseVisualStyleBackColor = true;
+            AddProductsSaveButton.Click += AddProductsSaveButton_Click;
             // 
             // AddProductsCancelButton
             // 
@@ -269,6 +275,7 @@
             AddProductSearchButton.TabIndex = 21;
             AddProductSearchButton.Text = "Search";
             AddProductSearchButton.UseVisualStyleBackColor = true;
+            AddProductSearchButton.Click += AddProductSearchButton_Click;
             // 
             // AddProductSearchTextbox
             // 

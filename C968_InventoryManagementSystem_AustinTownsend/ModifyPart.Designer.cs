@@ -73,6 +73,7 @@
             // 
             ModifyPartIDTextbox.Location = new Point(307, 140);
             ModifyPartIDTextbox.Name = "ModifyPartIDTextbox";
+            ModifyPartIDTextbox.ReadOnly = true;
             ModifyPartIDTextbox.Size = new Size(238, 27);
             ModifyPartIDTextbox.TabIndex = 2;
             // 

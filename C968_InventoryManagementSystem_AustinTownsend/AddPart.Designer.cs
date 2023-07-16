@@ -203,6 +203,7 @@
             // 
             AddPartIDTextbox.Location = new Point(307, 139);
             AddPartIDTextbox.Name = "AddPartIDTextbox";
+            AddPartIDTextbox.ReadOnly = true;
             AddPartIDTextbox.Size = new Size(238, 27);
             AddPartIDTextbox.TabIndex = 21;
             // 

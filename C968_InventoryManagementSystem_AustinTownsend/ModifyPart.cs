@@ -76,9 +76,6 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                 if (!int.TryParse(ModifyPartInventoryTextbox.Text, out int inStock))
                     throw new ArgumentException("Please enter a numeric value for the inventory level.");
 
-                if (!int.TryParse(ModifyPartIDTextbox.Text, out int ID))
-                    throw new ArgumentException("Please enter a numeric value for the ID number.");
-
                 if (!int.TryParse(ModifyPartMinTextbox.Text, out int min))
                     throw new ArgumentException("Please enter a numeric value for the minimum value.");
 

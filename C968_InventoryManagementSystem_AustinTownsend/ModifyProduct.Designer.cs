@@ -36,8 +36,8 @@
             ModifyProductAddButton = new Button();
             ModifyProductsAssociatedPartsLabel = new Label();
             ModifyProductAllPartsLabel = new Label();
-            ModifyProductDatagrid2 = new DataGridView();
-            ModifyProductDataGrid = new DataGridView();
+            ModifyProductAssociatedPartsDGV = new DataGridView();
+            ModifyProductAllPartsDGV = new DataGridView();
             ModifyProductMinTextbox = new TextBox();
             ModifyProductMinLabel = new Label();
             ModifyProductMaxTextbox = new TextBox();
@@ -51,20 +51,8 @@
             ModifyProductIDTextbox = new TextBox();
             ModifyProductIDLabel = new Label();
             ModifyProductLabel = new Label();
-            PartID = new DataGridViewTextBoxColumn();
-            PartName = new DataGridViewTextBoxColumn();
-            PartInventory = new DataGridViewTextBoxColumn();
-            PartPrice = new DataGridViewTextBoxColumn();
-            PartMin = new DataGridViewTextBoxColumn();
-            PartMax = new DataGridViewTextBoxColumn();
-            PartID2 = new DataGridViewTextBoxColumn();
-            PartName2 = new DataGridViewTextBoxColumn();
-            PartInventory2 = new DataGridViewTextBoxColumn();
-            PartPrice2 = new DataGridViewTextBoxColumn();
-            PartMin2 = new DataGridViewTextBoxColumn();
-            PartMax2 = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)ModifyProductDatagrid2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ModifyProductDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ModifyProductAssociatedPartsDGV).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ModifyProductAllPartsDGV).BeginInit();
             SuspendLayout();
             // 
             // ModifyProductSearchTextbox
@@ -83,6 +71,7 @@
             ModifyProductSearchButton.TabIndex = 44;
             ModifyProductSearchButton.Text = "Search";
             ModifyProductSearchButton.UseVisualStyleBackColor = true;
+            ModifyProductSearchButton.Click += ModifyProductSearchButton_Click;
             // 
             // ModifyProductsCancelButton
             // 
@@ -93,6 +82,7 @@
             ModifyProductsCancelButton.TabIndex = 43;
             ModifyProductsCancelButton.Text = "Cancel";
             ModifyProductsCancelButton.UseVisualStyleBackColor = true;
+            ModifyProductsCancelButton.Click += ModifyProductsCancelButton_Click;
             // 
             // ModifyProductsSaveButton
             // 
@@ -103,6 +93,7 @@
             ModifyProductsSaveButton.TabIndex = 42;
             ModifyProductsSaveButton.Text = "Save";
             ModifyProductsSaveButton.UseVisualStyleBackColor = true;
+            ModifyProductsSaveButton.Click += ModifyProductsSaveButton_Click;
             // 
             // ModifyProductDeleteButton
             // 
@@ -113,6 +104,7 @@
             ModifyProductDeleteButton.TabIndex = 41;
             ModifyProductDeleteButton.Text = "Delete";
             ModifyProductDeleteButton.UseVisualStyleBackColor = true;
+            ModifyProductDeleteButton.Click += ModifyProductDeleteButton_Click;
             // 
             // ModifyProductAddButton
             // 
@@ -123,6 +115,7 @@
             ModifyProductAddButton.TabIndex = 40;
             ModifyProductAddButton.Text = "Add";
             ModifyProductAddButton.UseVisualStyleBackColor = true;
+            ModifyProductAddButton.Click += ModifyProductAddButton_Click;
             // 
             // ModifyProductsAssociatedPartsLabel
             // 
@@ -144,35 +137,37 @@
             ModifyProductAllPartsLabel.TabIndex = 38;
             ModifyProductAllPartsLabel.Text = "All Candidate Parts";
             // 
-            // ModifyProductDatagrid2
+            // ModifyProductAssociatedPartsDGV
             // 
-            ModifyProductDatagrid2.AllowUserToAddRows = false;
-            ModifyProductDatagrid2.AllowUserToDeleteRows = false;
-            ModifyProductDatagrid2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ModifyProductDatagrid2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ModifyProductDatagrid2.Columns.AddRange(new DataGridViewColumn[] { PartID2, PartName2, PartInventory2, PartPrice2, PartMin2, PartMax2 });
-            ModifyProductDatagrid2.Location = new Point(545, 405);
-            ModifyProductDatagrid2.Name = "ModifyProductDatagrid2";
-            ModifyProductDatagrid2.RowHeadersVisible = false;
-            ModifyProductDatagrid2.RowHeadersWidth = 51;
-            ModifyProductDatagrid2.RowTemplate.Height = 29;
-            ModifyProductDatagrid2.Size = new Size(613, 219);
-            ModifyProductDatagrid2.TabIndex = 37;
+            ModifyProductAssociatedPartsDGV.AllowUserToAddRows = false;
+            ModifyProductAssociatedPartsDGV.AllowUserToDeleteRows = false;
+            ModifyProductAssociatedPartsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ModifyProductAssociatedPartsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ModifyProductAssociatedPartsDGV.Location = new Point(545, 405);
+            ModifyProductAssociatedPartsDGV.Name = "ModifyProductAssociatedPartsDGV";
+            ModifyProductAssociatedPartsDGV.ReadOnly = true;
+            ModifyProductAssociatedPartsDGV.RowHeadersVisible = false;
+            ModifyProductAssociatedPartsDGV.RowHeadersWidth = 51;
+            ModifyProductAssociatedPartsDGV.RowTemplate.Height = 29;
+            ModifyProductAssociatedPartsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ModifyProductAssociatedPartsDGV.Size = new Size(613, 219);
+            ModifyProductAssociatedPartsDGV.TabIndex = 37;
             // 
-            // ModifyProductDataGrid
+            // ModifyProductAllPartsDGV
             // 
-            ModifyProductDataGrid.AllowUserToAddRows = false;
-            ModifyProductDataGrid.AllowUserToDeleteRows = false;
-            ModifyProductDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ModifyProductDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ModifyProductDataGrid.Columns.AddRange(new DataGridViewColumn[] { PartID, PartName, PartInventory, PartPrice, PartMin, PartMax });
-            ModifyProductDataGrid.Location = new Point(545, 102);
-            ModifyProductDataGrid.Name = "ModifyProductDataGrid";
-            ModifyProductDataGrid.RowHeadersVisible = false;
-            ModifyProductDataGrid.RowHeadersWidth = 51;
-            ModifyProductDataGrid.RowTemplate.Height = 29;
-            ModifyProductDataGrid.Size = new Size(613, 219);
-            ModifyProductDataGrid.TabIndex = 36;
+            ModifyProductAllPartsDGV.AllowUserToAddRows = false;
+            ModifyProductAllPartsDGV.AllowUserToDeleteRows = false;
+            ModifyProductAllPartsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ModifyProductAllPartsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ModifyProductAllPartsDGV.Location = new Point(545, 102);
+            ModifyProductAllPartsDGV.Name = "ModifyProductAllPartsDGV";
+            ModifyProductAllPartsDGV.ReadOnly = true;
+            ModifyProductAllPartsDGV.RowHeadersVisible = false;
+            ModifyProductAllPartsDGV.RowHeadersWidth = 51;
+            ModifyProductAllPartsDGV.RowTemplate.Height = 29;
+            ModifyProductAllPartsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ModifyProductAllPartsDGV.Size = new Size(613, 219);
+            ModifyProductAllPartsDGV.TabIndex = 36;
             // 
             // ModifyProductMinTextbox
             // 
@@ -263,6 +258,7 @@
             // 
             ModifyProductIDTextbox.Location = new Point(167, 217);
             ModifyProductIDTextbox.Name = "ModifyProductIDTextbox";
+            ModifyProductIDTextbox.ReadOnly = true;
             ModifyProductIDTextbox.Size = new Size(173, 27);
             ModifyProductIDTextbox.TabIndex = 25;
             // 
@@ -286,78 +282,6 @@
             ModifyProductLabel.TabIndex = 23;
             ModifyProductLabel.Text = "Modify Product";
             // 
-            // PartID
-            // 
-            PartID.HeaderText = "Part ID";
-            PartID.MinimumWidth = 6;
-            PartID.Name = "PartID";
-            // 
-            // PartName
-            // 
-            PartName.HeaderText = "Name";
-            PartName.MinimumWidth = 6;
-            PartName.Name = "PartName";
-            // 
-            // PartInventory
-            // 
-            PartInventory.HeaderText = "Inventory";
-            PartInventory.MinimumWidth = 6;
-            PartInventory.Name = "PartInventory";
-            // 
-            // PartPrice
-            // 
-            PartPrice.HeaderText = "Price";
-            PartPrice.MinimumWidth = 6;
-            PartPrice.Name = "PartPrice";
-            // 
-            // PartMin
-            // 
-            PartMin.HeaderText = "Min";
-            PartMin.MinimumWidth = 6;
-            PartMin.Name = "PartMin";
-            // 
-            // PartMax
-            // 
-            PartMax.HeaderText = "Max";
-            PartMax.MinimumWidth = 6;
-            PartMax.Name = "PartMax";
-            // 
-            // PartID2
-            // 
-            PartID2.HeaderText = "Part ID";
-            PartID2.MinimumWidth = 6;
-            PartID2.Name = "PartID2";
-            // 
-            // PartName2
-            // 
-            PartName2.HeaderText = "Name";
-            PartName2.MinimumWidth = 6;
-            PartName2.Name = "PartName2";
-            // 
-            // PartInventory2
-            // 
-            PartInventory2.HeaderText = "Inventory";
-            PartInventory2.MinimumWidth = 6;
-            PartInventory2.Name = "PartInventory2";
-            // 
-            // PartPrice2
-            // 
-            PartPrice2.HeaderText = "Price";
-            PartPrice2.MinimumWidth = 6;
-            PartPrice2.Name = "PartPrice2";
-            // 
-            // PartMin2
-            // 
-            PartMin2.HeaderText = "Min";
-            PartMin2.MinimumWidth = 6;
-            PartMin2.Name = "PartMin2";
-            // 
-            // PartMax2
-            // 
-            PartMax2.HeaderText = "Max";
-            PartMax2.MinimumWidth = 6;
-            PartMax2.Name = "PartMax2";
-            // 
             // ModifyProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -371,8 +295,8 @@
             Controls.Add(ModifyProductAddButton);
             Controls.Add(ModifyProductsAssociatedPartsLabel);
             Controls.Add(ModifyProductAllPartsLabel);
-            Controls.Add(ModifyProductDatagrid2);
-            Controls.Add(ModifyProductDataGrid);
+            Controls.Add(ModifyProductAssociatedPartsDGV);
+            Controls.Add(ModifyProductAllPartsDGV);
             Controls.Add(ModifyProductMinTextbox);
             Controls.Add(ModifyProductMinLabel);
             Controls.Add(ModifyProductMaxTextbox);
@@ -388,8 +312,9 @@
             Controls.Add(ModifyProductLabel);
             Name = "ModifyProduct";
             Text = "Modify Product";
-            ((System.ComponentModel.ISupportInitialize)ModifyProductDatagrid2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ModifyProductDataGrid).EndInit();
+            Load += ModifyProduct_Load;
+            ((System.ComponentModel.ISupportInitialize)ModifyProductAssociatedPartsDGV).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ModifyProductAllPartsDGV).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -404,8 +329,8 @@
         private Button ModifyProductAddButton;
         private Label ModifyProductsAssociatedPartsLabel;
         private Label ModifyProductAllPartsLabel;
-        private DataGridView ModifyProductDatagrid2;
-        private DataGridView ModifyProductDataGrid;
+        private DataGridView ModifyProductAssociatedPartsDGV;
+        private DataGridView ModifyProductAllPartsDGV;
         private TextBox ModifyProductMinTextbox;
         private Label ModifyProductMinLabel;
         private TextBox ModifyProductMaxTextbox;
@@ -419,17 +344,5 @@
         private TextBox ModifyProductIDTextbox;
         private Label ModifyProductIDLabel;
         private Label ModifyProductLabel;
-        private DataGridViewTextBoxColumn PartID2;
-        private DataGridViewTextBoxColumn PartName2;
-        private DataGridViewTextBoxColumn PartInventory2;
-        private DataGridViewTextBoxColumn PartPrice2;
-        private DataGridViewTextBoxColumn PartMin2;
-        private DataGridViewTextBoxColumn PartMax2;
-        private DataGridViewTextBoxColumn PartID;
-        private DataGridViewTextBoxColumn PartName;
-        private DataGridViewTextBoxColumn PartInventory;
-        private DataGridViewTextBoxColumn PartPrice;
-        private DataGridViewTextBoxColumn PartMin;
-        private DataGridViewTextBoxColumn PartMax;
     }
 }

@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using System.Linq;
+
 namespace C968_InventoryManagementSystem_AustinTownsend
 {
     public partial class MainScreen : Form
@@ -54,11 +57,18 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 
         private void ModifyProductsButton_Click(object sender, EventArgs e)
         {
-            var selectedProduct = (Part)ProductDataGrid.CurrentRow.DataBoundItem;
-            var modifyProductForm = new ModifyProduct();
-            modifyProductForm.FormClosed -= new FormClosedEventHandler(FormClosedShow);
-            modifyProductForm.Show();
-            this.Hide();
+            if (ProductDataGrid.CurrentRow != null)
+            {
+                var selectedProduct = (Product)ProductDataGrid.CurrentRow.DataBoundItem;
+                var modifyProductForm = new ModifyProduct(selectedProduct);
+                modifyProductForm.FormClosed += new FormClosedEventHandler(FormClosedShow);
+                modifyProductForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("No product selected.");
+            }
         }
 
         private void DeletePartsButton_Click(object sender, EventArgs e)
@@ -136,16 +146,36 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 
         private void SearchButtonParts_Click(object sender, EventArgs e)
         {
-            string searchTerm = SearchPartsTextbox.Text;
-            var matchingParts = Inventory.AllParts.Where(p => p.Name.Contains(searchTerm)).ToList();
-            PartDataGrid.DataSource = matchingParts;
+            // Filter the AllParts BindingList based on the search query and update the DataGridView
+            var searchQuery = SearchPartsTextbox.Text.Trim().ToLower();
+
+            // When the search box is empty, display all parts
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                PartDataGrid.DataSource = new BindingList<Part>(Inventory.AllParts);
+            }
+            else
+            {
+                PartDataGrid.DataSource = new BindingList<Part>(
+                Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+            }
         }
 
         private void SearchButtonProducts_Click(object sender, EventArgs e)
         {
-            string searchTerm = SearchProductsTextbox.Text;
-            var matchingProducts = Inventory.Products.Where(p => p.Name.Contains(searchTerm)).ToList();
-            PartDataGrid.DataSource = matchingProducts;
+            // Filter the AllParts BindingList based on the search query and update the DataGridView
+            var searchQuery = SearchProductsTextbox.Text.Trim().ToLower();
+
+            // When the search box is empty, display all parts
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                ProductDataGrid.DataSource = new BindingList<Product>(Inventory.Products);
+            }
+            else
+            {
+                ProductDataGrid.DataSource = new BindingList<Product>(
+                Inventory.Products.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+            }
         }
 
     }

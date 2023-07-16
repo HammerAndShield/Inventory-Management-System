@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace C968_InventoryManagementSystem_AustinTownsend
 {
@@ -31,6 +32,86 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         private void AddProductsCancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddProductSearchButton_Click(object sender, EventArgs e)
+        {
+            // Filter the AllParts BindingList based on the search query and update the DataGridView
+            var searchQuery = AddProductSearchTextbox.Text.Trim().ToLower();
+
+            // When the search box is empty, display all parts
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                AddProductAllPartsDGV.DataSource = new BindingList<Part>(Inventory.AllParts);
+            }
+            else
+            {
+                AddProductAllPartsDGV.DataSource = new BindingList<Part>(
+                Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+            }
+        }
+
+        private void AddProductAddButton_Click(object sender, EventArgs e)
+        {
+            var selectedPart = (Part)AddProductAllPartsDGV.CurrentRow.DataBoundItem;
+
+            ((BindingList<Part>)AddProductAssociatedPartsDGV.DataSource).Add(selectedPart);
+        }
+
+        private void AddProductDeleteButton_Click(object sender, EventArgs e)
+        {
+            var selectedPart = (Part)AddProductAssociatedPartsDGV.CurrentRow.DataBoundItem;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete?", "Confirm Delete", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                ((BindingList<Part>)AddProductAssociatedPartsDGV.DataSource).Remove(selectedPart);
+            }
+        }
+
+        private void AddProductsSaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Detect non-numeric values in textboxes that expect numeric values
+                if (!int.TryParse(AddProductInventoryTextbox.Text, out int inventory) ||
+                    !decimal.TryParse(AddProductPriceTextbox.Text, out decimal price) || !int.TryParse(AddProductMaxTextbox.Text, out int max) ||
+                    !int.TryParse(AddProductMinTextbox.Text, out int min))
+                    throw new ArgumentException("Inventory, Price, Max and Min should be numeric.");
+
+                // Min should be less than Max; and Inv should be between those two values
+                if (min >= max)
+                    throw new ArgumentException("Min should be less than Max.");
+                if (inventory < min || inventory > max)
+                    throw new ArgumentException("Inventory should be between Min and Max.");
+
+                // Creating a new Product and adding the associated parts
+                var newProduct = new Product()
+                {
+                    Name = AddProductNameTextbox.Text,
+                    Price = price,
+                    InStock = inventory,
+                    Min = min,
+                    Max = max,
+                };
+
+                foreach (DataGridViewRow row in AddProductAssociatedPartsDGV.Rows)
+                {
+                    newProduct.AddAssociatedPart((Part)row.DataBoundItem);
+                }
+
+                // Adding the new Product to the Inventory
+                Inventory.AddProduct(newProduct);
+
+                // Closing the AddProduct form and returning to the main form
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if an exception is thrown.
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
