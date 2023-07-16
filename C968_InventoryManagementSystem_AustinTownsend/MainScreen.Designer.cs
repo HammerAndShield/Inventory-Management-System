@@ -220,9 +220,9 @@
             MainScreenPartLabel.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             MainScreenPartLabel.Location = new Point(12, 98);
             MainScreenPartLabel.Name = "MainScreenPartLabel";
-            MainScreenPartLabel.Size = new Size(56, 31);
+            MainScreenPartLabel.Size = new Size(66, 31);
             MainScreenPartLabel.TabIndex = 14;
-            MainScreenPartLabel.Text = "Part";
+            MainScreenPartLabel.Text = "Parts";
             // 
             // MainScreenProductLabel
             // 

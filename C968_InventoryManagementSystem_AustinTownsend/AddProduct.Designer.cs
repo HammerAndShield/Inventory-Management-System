@@ -314,6 +314,7 @@
             Controls.Add(AddProductLabel);
             Name = "AddProduct";
             Text = "Add Product";
+            Load += AddProduct_Load;
             ((System.ComponentModel.ISupportInitialize)AddProductAllPartsDGV).EndInit();
             ((System.ComponentModel.ISupportInitialize)AddProductAssociatedPartsDGV).EndInit();
             ResumeLayout(false);

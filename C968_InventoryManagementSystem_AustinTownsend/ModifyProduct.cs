@@ -23,7 +23,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         {
             if (productToModify != null)
             {
-                ModifyProductIDTextbox.Text = productToModify.ProductId.ToString();
+                ModifyProductIDTextbox.Text = productToModify.ProductID.ToString();
                 ModifyProductNameTextbox.Text = productToModify.Name;
                 ModifyProductInventoryTextbox.Text = productToModify.InStock.ToString();
                 ModifyProductPriceTextbox.Text = productToModify.Price.ToString();
@@ -42,7 +42,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 
         private void ModifyProductSearchButton_Click(object sender, EventArgs e)
         {
-            // Filter the AllParts BindingList based on the search query and update the DataGridView
+            // Save the search query as a variable to run the search algorithm.
             var searchQuery = ModifyProductSearchTextbox.Text.Trim().ToLower();
 
             // When the search box is empty, display all parts
@@ -52,8 +52,16 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             }
             else
             {
-                ModifyProductAllPartsDGV.DataSource = new BindingList<Part>(
-                Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+                var matchingParts = Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery) || p.PartID.ToString().Contains(searchQuery)).ToList();
+
+                if (!matchingParts.Any())
+                {
+                    MessageBox.Show("Part matching search could not be found.");
+                }
+                else
+                {
+                    ModifyProductAllPartsDGV.DataSource = new BindingList<Part>(matchingParts);
+                }
             }
         }
 
@@ -80,29 +88,30 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         {
             try
             {
-                // Test that Inventory, Price, Max and Min are numeric values
-                if (!int.TryParse(ModifyProductInventoryTextbox.Text, out int inv) ||
-                    !decimal.TryParse(ModifyProductPriceTextbox.Text, out decimal price) ||
-                    !int.TryParse(ModifyProductMaxTextbox.Text, out int max) ||
-                    !int.TryParse(ModifyProductMinTextbox.Text, out int min))
-                {
-                    throw new FormatException("Inventory, Price, Max, and Min must be numeric values.");
-                }
+                // Check that all intended numeric values are numeric, and display an error if not
+                if (!int.TryParse(ModifyProductInventoryTextbox.Text, out int inventory))
+                    throw new ArgumentException("Inventory should be numeric.");
 
-                // Handle Min > Max and Inv not between Min and Max
-                if (min > max)
-                {
-                    throw new InvalidOperationException("Min must be less than Max.");
-                }
-                if (inv < min || inv > max)
-                {
-                    throw new InvalidOperationException("Inv must be between Min and Max.");
-                }
+                if (!decimal.TryParse(ModifyProductPriceTextbox.Text, out decimal price))
+                    throw new ArgumentException("Price should be numeric.");
+
+                if (!int.TryParse(ModifyProductMaxTextbox.Text, out int max))
+                    throw new ArgumentException("Max should be numeric.");
+
+                if (!int.TryParse(ModifyProductMinTextbox.Text, out int min))
+                    throw new ArgumentException("Min should be numeric.");
+
+                // Min should be less than Max; and Inv should be between those two values
+                if (min >= max)
+                    throw new ArgumentException("Min should be less than Max.");
+
+                if (inventory < min || inventory > max)
+                    throw new ArgumentException("Inventory should be between Min and Max.");
 
                 // If no exceptions were thrown, update the product
                 productToModify.Name = ModifyProductNameTextbox.Text;
                 productToModify.Price = price;
-                productToModify.InStock = inv;
+                productToModify.InStock = inventory;
                 productToModify.Min = min;
                 productToModify.Max = max;
 

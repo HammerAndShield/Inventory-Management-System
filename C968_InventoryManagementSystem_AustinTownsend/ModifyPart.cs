@@ -95,24 +95,63 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                         throw new ArgumentException("Please enter a numeric value for the machine ID.");
                 }
 
-                // Update the partToModify with the data from the form
-                partToModify.Name = ModifyPartNameTextbox.Text;
-                partToModify.InStock = int.Parse(ModifyPartInventoryTextbox.Text);
-                partToModify.Price = decimal.Parse(ModifyPartPriceTextbox.Text);
-                partToModify.Max = int.Parse(ModifyPartMaxTextbox.Text);
-                partToModify.Min = int.Parse(ModifyPartMinTextbox.Text);
-
-                if (ModifyPartInHouseRadio.Checked)
+                // Detect if the type of the part needs to be changed
+                if (ModifyPartInHouseRadio.Checked && partToModify is Outsourced)
                 {
-                    ((Inhouse)partToModify).MachineID = int.Parse(ModifyPartMachineIDTextbox.Text);
+                    // The part is currently Outsourced but should be Inhouse
+                    int partID = partToModify.PartID; // Save the old part's ID
+                    Inventory.DeletePart(partToModify);
+                    partToModify = new Inhouse
+                    {
+                        PartID = partID,
+                        Name = ModifyPartNameTextbox.Text,
+                        InStock = inStock,
+                        Price = price,
+                        Max = max,
+                        Min = min,
+                        MachineID = int.Parse(ModifyPartMachineIDTextbox.Text)
+                    };
+                    Inventory.AddPart(partToModify, partID); // Add the new part to the inventory
+
+                }
+                else if (ModifyPartOutsourcedRadio.Checked && partToModify is Inhouse)
+                {
+                    // The part is currently Inhouse but should be Outsourced
+                    int partID = partToModify.PartID; // Save the old part's ID
+                    Inventory.DeletePart(partToModify);
+                    partToModify = new Outsourced
+                    {
+                        PartID = partID,
+                        Name = ModifyPartNameTextbox.Text,
+                        InStock = inStock,
+                        Price = price,
+                        Max = max,
+                        Min = min,
+                        CompanyName = ModifyPartMachineIDTextbox.Text
+                    };
+                    Inventory.AddPart(partToModify, partID); // Add the new part to the inventory
                 }
                 else
                 {
-                    ((Outsourced)partToModify).CompanyName = ModifyPartMachineIDTextbox.Text;
-                }
+                    // No part type change, just update the fields
+                    partToModify.Name = ModifyPartNameTextbox.Text;
+                    partToModify.InStock = inStock;
+                    partToModify.Price = price;
+                    partToModify.Max = max;
+                    partToModify.Min = min;
 
-                // Update the part in the inventory
-                Inventory.UpdatePart(partToModify.PartID, partToModify);
+                    if (ModifyPartInHouseRadio.Checked)
+                    {
+                        ((Inhouse)partToModify).MachineID = int.Parse(ModifyPartMachineIDTextbox.Text);
+                    }
+                    else
+                    {
+                        ((Outsourced)partToModify).CompanyName = ModifyPartMachineIDTextbox.Text;
+                    }
+
+                    // Update the part in the inventory
+                    Inventory.UpdatePart(partToModify.PartID, partToModify);
+                }
 
                 // Close the form
                 this.Close();

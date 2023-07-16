@@ -253,6 +253,7 @@
             Controls.Add(AddPartLabel);
             Name = "AddPart";
             Text = "Add Part";
+            Load += AddPart_Load;
             ResumeLayout(false);
             PerformLayout();
         }

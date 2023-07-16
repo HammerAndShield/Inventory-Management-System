@@ -44,10 +44,10 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         {
             try
             {
-                // Gather data from the form controls.
+                
                 string name = AddPartNameTextbox.Text;
 
-                // Detect non-numeric values in textboxes that expect numeric values
+                // Detect non-numeric values in textboxes that expect numeric values and throw an error if not numeric
                 if (!decimal.TryParse(AddPartPriceTextbox.Text, out decimal price))
                     throw new ArgumentException("Please enter a numeric value for the price.");
 
@@ -92,6 +92,11 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                 // Display an error message if a validation fails.
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddPart_Load(object sender, EventArgs e)
+        {
+            AddPartIDTextbox.Text = Inventory.nextPartID.ToString();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 
         private void AddProductSearchButton_Click(object sender, EventArgs e)
         {
-            // Filter the AllParts BindingList based on the search query and update the DataGridView
+            // Save the query as a variable to run the search algorithm
             var searchQuery = AddProductSearchTextbox.Text.Trim().ToLower();
 
             // When the search box is empty, display all parts
@@ -46,8 +46,16 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             }
             else
             {
-                AddProductAllPartsDGV.DataSource = new BindingList<Part>(
-                Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+                var matchingParts = Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery) || p.PartID.ToString().Contains(searchQuery)).ToList();
+
+                if (!matchingParts.Any()) 
+                {
+                    MessageBox.Show("Part matching search could not be found.");
+                }
+                else
+                {
+                    AddProductAllPartsDGV.DataSource = new BindingList<Part>(matchingParts);
+                }
             }
         }
 
@@ -75,14 +83,22 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             try
             {
                 // Detect non-numeric values in textboxes that expect numeric values
-                if (!int.TryParse(AddProductInventoryTextbox.Text, out int inventory) ||
-                    !decimal.TryParse(AddProductPriceTextbox.Text, out decimal price) || !int.TryParse(AddProductMaxTextbox.Text, out int max) ||
-                    !int.TryParse(AddProductMinTextbox.Text, out int min))
-                    throw new ArgumentException("Inventory, Price, Max and Min should be numeric.");
+                if (!int.TryParse(AddProductInventoryTextbox.Text, out int inventory))
+                    throw new ArgumentException("Inventory should be numeric.");
+
+                if (!decimal.TryParse(AddProductPriceTextbox.Text, out decimal price))
+                    throw new ArgumentException("Price should be numeric.");
+
+                if (!int.TryParse(AddProductMaxTextbox.Text, out int max))
+                    throw new ArgumentException("Max should be numeric.");
+
+                if (!int.TryParse(AddProductMinTextbox.Text, out int min))
+                    throw new ArgumentException("Min should be numeric.");
 
                 // Min should be less than Max; and Inv should be between those two values
                 if (min >= max)
                     throw new ArgumentException("Min should be less than Max.");
+
                 if (inventory < min || inventory > max)
                     throw new ArgumentException("Inventory should be between Min and Max.");
 
@@ -112,6 +128,11 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                 // Display an error message if an exception is thrown.
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddProduct_Load(object sender, EventArgs e)
+        {
+            AddProductIDTextbox.Text = Inventory.nextProductID.ToString();
         }
     }
 }

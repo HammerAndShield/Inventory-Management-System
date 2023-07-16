@@ -126,7 +126,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                                                                  "Confirm Delete", MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        bool success = Inventory.RemoveProduct(selectedProduct.ProductId);
+                        bool success = Inventory.RemoveProduct(selectedProduct.ProductID);
                         if (success)
                         {
                             MessageBox.Show("Product Deleted");
@@ -156,8 +156,16 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             }
             else
             {
-                PartDataGrid.DataSource = new BindingList<Part>(
-                Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+                var matchingParts = Inventory.AllParts.Where(p => p.Name.ToLower().Contains(searchQuery) || p.PartID.ToString().Contains(searchQuery)).ToList();
+
+                if (!matchingParts.Any())
+                {
+                    MessageBox.Show("Part matching search could not be found.");
+                }
+                else
+                {
+                    PartDataGrid.DataSource = new BindingList<Part>(matchingParts);
+                }
             }
         }
 
@@ -173,8 +181,16 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             }
             else
             {
-                ProductDataGrid.DataSource = new BindingList<Product>(
-                Inventory.Products.Where(p => p.Name.ToLower().Contains(searchQuery)).ToList());
+                var matchingProducts = Inventory.Products.Where(p => p.Name.ToLower().Contains(searchQuery) || p.ProductID.ToString().Contains(searchQuery)).ToList();
+
+                if (!matchingProducts.Any())
+                {
+                    MessageBox.Show("Product matching search could not be found.");
+                }
+                else
+                {
+                    ProductDataGrid.DataSource = new BindingList<Product>(matchingProducts);
+                }
             }
         }
 
