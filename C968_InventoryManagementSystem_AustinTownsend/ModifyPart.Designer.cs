@@ -71,14 +71,14 @@
             // 
             // ModifyPartIDTextbox
             // 
-            ModifyPartIDTextbox.Location = new Point(274, 140);
+            ModifyPartIDTextbox.Location = new Point(307, 140);
             ModifyPartIDTextbox.Name = "ModifyPartIDTextbox";
             ModifyPartIDTextbox.Size = new Size(238, 27);
             ModifyPartIDTextbox.TabIndex = 2;
             // 
             // ModifyPartNameTextbox
             // 
-            ModifyPartNameTextbox.Location = new Point(274, 188);
+            ModifyPartNameTextbox.Location = new Point(307, 188);
             ModifyPartNameTextbox.Name = "ModifyPartNameTextbox";
             ModifyPartNameTextbox.Size = new Size(238, 27);
             ModifyPartNameTextbox.TabIndex = 4;
@@ -95,7 +95,7 @@
             // 
             // ModifyPartInventoryTextbox
             // 
-            ModifyPartInventoryTextbox.Location = new Point(274, 238);
+            ModifyPartInventoryTextbox.Location = new Point(307, 238);
             ModifyPartInventoryTextbox.Name = "ModifyPartInventoryTextbox";
             ModifyPartInventoryTextbox.Size = new Size(238, 27);
             ModifyPartInventoryTextbox.TabIndex = 6;
@@ -112,7 +112,7 @@
             // 
             // ModifyPartPriceTextbox
             // 
-            ModifyPartPriceTextbox.Location = new Point(274, 289);
+            ModifyPartPriceTextbox.Location = new Point(307, 289);
             ModifyPartPriceTextbox.Name = "ModifyPartPriceTextbox";
             ModifyPartPriceTextbox.Size = new Size(238, 27);
             ModifyPartPriceTextbox.TabIndex = 8;
@@ -130,7 +130,7 @@
             // 
             // ModifyPartMachineIDTextbox
             // 
-            ModifyPartMachineIDTextbox.Location = new Point(274, 395);
+            ModifyPartMachineIDTextbox.Location = new Point(307, 395);
             ModifyPartMachineIDTextbox.Name = "ModifyPartMachineIDTextbox";
             ModifyPartMachineIDTextbox.Size = new Size(238, 27);
             ModifyPartMachineIDTextbox.TabIndex = 10;
@@ -158,7 +158,7 @@
             // 
             // ModifyPartMaxTextbox
             // 
-            ModifyPartMaxTextbox.Location = new Point(274, 342);
+            ModifyPartMaxTextbox.Location = new Point(307, 342);
             ModifyPartMaxTextbox.Name = "ModifyPartMaxTextbox";
             ModifyPartMaxTextbox.Size = new Size(88, 27);
             ModifyPartMaxTextbox.TabIndex = 12;
@@ -167,7 +167,7 @@
             // 
             ModifyPartMinLabel.AutoSize = true;
             ModifyPartMinLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ModifyPartMinLabel.Location = new Point(398, 338);
+            ModifyPartMinLabel.Location = new Point(431, 338);
             ModifyPartMinLabel.Name = "ModifyPartMinLabel";
             ModifyPartMinLabel.Size = new Size(46, 28);
             ModifyPartMinLabel.TabIndex = 13;
@@ -175,7 +175,7 @@
             // 
             // ModifyPartMinTextbox
             // 
-            ModifyPartMinTextbox.Location = new Point(463, 342);
+            ModifyPartMinTextbox.Location = new Point(496, 342);
             ModifyPartMinTextbox.Name = "ModifyPartMinTextbox";
             ModifyPartMinTextbox.Size = new Size(93, 27);
             ModifyPartMinTextbox.TabIndex = 14;
@@ -189,6 +189,7 @@
             ModifyPartSaveButton.TabIndex = 15;
             ModifyPartSaveButton.Text = "Save";
             ModifyPartSaveButton.UseVisualStyleBackColor = true;
+            ModifyPartSaveButton.Click += ModifyPartSaveButton_Click;
             // 
             // ModifyPartCancelButton
             // 
@@ -199,6 +200,7 @@
             ModifyPartCancelButton.TabIndex = 16;
             ModifyPartCancelButton.Text = "Cancel";
             ModifyPartCancelButton.UseVisualStyleBackColor = true;
+            ModifyPartCancelButton.Click += ModifyPartCancelButton_Click;
             // 
             // ModifyPartInHouseRadio
             // 
@@ -210,6 +212,7 @@
             ModifyPartInHouseRadio.TabStop = true;
             ModifyPartInHouseRadio.Text = "In-House";
             ModifyPartInHouseRadio.UseVisualStyleBackColor = true;
+            ModifyPartInHouseRadio.CheckedChanged += ModifyPartInHouseRadio_CheckedChanged;
             // 
             // ModifyPartOutsourcedRadio
             // 
@@ -221,6 +224,7 @@
             ModifyPartOutsourcedRadio.TabStop = true;
             ModifyPartOutsourcedRadio.Text = "Outsourced";
             ModifyPartOutsourcedRadio.UseVisualStyleBackColor = true;
+            ModifyPartOutsourcedRadio.CheckedChanged += ModifyPartOutsourcedRadio_CheckedChanged;
             // 
             // ModifyPart
             // 
@@ -248,6 +252,7 @@
             Controls.Add(ModifyPartLabel);
             Name = "ModifyPart";
             Text = "Modify Part";
+            Load += ModifyPart_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -19,6 +19,19 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         {
             Products = new BindingList<Product>();
             AllParts = new BindingList<Part>();
+
+            //Add initial parts to binding list for testing
+            var inhousePart = new Inhouse { PartID = 1, Name = "Street Tire", Price = 59.99M, InStock = 20, Min = 5, Max = 50, MachineID = 8928 };
+            var outsourcedPart = new Outsourced { PartID = 2, Name = "Off-Road Tire", Price = 69.99M, InStock = 10, Min = 5, Max = 50, CompanyName = "Jeffs Offroad" };
+
+            AllParts.Add(inhousePart);
+            AllParts.Add(outsourcedPart);
+            //Add initial products to binding list for testing
+            var associatedParts1 = new BindingList<Part> { inhousePart };
+            var associatedParts2 = new BindingList<Part> { outsourcedPart };
+
+            Products.Add(new Product { ProductId = 1, Name = "Street Bike", Price = 599.99M, InStock = 15, Min = 5, Max = 50, AssociatedParts = associatedParts1 });
+            Products.Add(new Product { ProductId = 2, Name = "Off-Road Bike", Price = 799.99M, InStock = 25, Min = 5, Max = 50, AssociatedParts = associatedParts2 });
         }
 
         public static void AddProduct(Product product)

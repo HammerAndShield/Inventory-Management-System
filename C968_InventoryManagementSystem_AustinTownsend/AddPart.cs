@@ -51,6 +51,9 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                 if (!decimal.TryParse(AddPartPriceTextbox.Text, out decimal price))
                     throw new ArgumentException("Please enter a numeric value for the price.");
 
+                if (!int.TryParse(AddPartIDTextbox.Text, out int ID))
+                    throw new ArgumentException("Please enter a numeric value for the ID number.");
+
                 if (!int.TryParse(AddPartInventoryTextbox.Text, out int inStock))
                     throw new ArgumentException("Please enter a numeric value for the inventory level.");
 

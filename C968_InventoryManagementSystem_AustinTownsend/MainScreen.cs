@@ -38,19 +38,26 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 
         private void ModifyPartsButton_Click(object sender, EventArgs e)
         {
-            var selectedPart = (Part)PartDataGrid.CurrentRow.DataBoundItem;
-            var modifyPartForm = new ModifyPart();
-            modifyPartForm.FormClosed -= new FormClosedEventHandler(FormClosedShow);
-            modifyPartForm.Show();
-            this.Hide();
+            if (PartDataGrid.CurrentRow != null)
+            {
+                var selectedPart = (Part)PartDataGrid.CurrentRow.DataBoundItem;
+                var modifyPartForm = new ModifyPart(selectedPart);
+                modifyPartForm.FormClosed += new FormClosedEventHandler(FormClosedShow);
+                modifyPartForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("No part selected.");
+            }
         }
 
         private void ModifyProductsButton_Click(object sender, EventArgs e)
         {
             var selectedProduct = (Part)ProductDataGrid.CurrentRow.DataBoundItem;
-            var modifyPartForm = new ModifyPart();
-            modifyPartForm.FormClosed -= new FormClosedEventHandler(FormClosedShow);
-            modifyPartForm.Show();
+            var modifyProductForm = new ModifyProduct();
+            modifyProductForm.FormClosed -= new FormClosedEventHandler(FormClosedShow);
+            modifyProductForm.Show();
             this.Hide();
         }
 
@@ -58,11 +65,12 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         {
             try
             {
-                // Get the selected part from the DataGridView.
-                Part selectedPart = (Part)PartDataGrid.CurrentRow.DataBoundItem;
-
-                if (selectedPart == null)
+                // Check if a row is selected.
+                if (PartDataGrid.CurrentRow == null)
                     throw new InvalidOperationException("No part selected.");
+
+                // Get the selected part from the DataGrid       
+                Part selectedPart = (Part)PartDataGrid.CurrentRow.DataBoundItem;
 
                 // Prevent the user from deleting a part that has a product associated with it.
                 foreach (Product product in Inventory.Products)
@@ -89,7 +97,6 @@ namespace C968_InventoryManagementSystem_AustinTownsend
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void DeleteProductsButton_Click(object sender, EventArgs e)
         {
             if (ProductDataGrid.SelectedCells.Count > 0)

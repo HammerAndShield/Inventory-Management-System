@@ -69,11 +69,14 @@
             PartDataGrid.AllowUserToDeleteRows = false;
             PartDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             PartDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            PartDataGrid.EditMode = DataGridViewEditMode.EditProgrammatically;
             PartDataGrid.Location = new Point(12, 139);
             PartDataGrid.Name = "PartDataGrid";
+            PartDataGrid.ReadOnly = true;
             PartDataGrid.RowHeadersVisible = false;
             PartDataGrid.RowHeadersWidth = 51;
             PartDataGrid.RowTemplate.Height = 29;
+            PartDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             PartDataGrid.Size = new Size(1053, 516);
             PartDataGrid.TabIndex = 1;
             // 
@@ -87,11 +90,14 @@
             ProductDataGrid.AllowUserToDeleteRows = false;
             ProductDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ProductDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ProductDataGrid.EditMode = DataGridViewEditMode.EditProgrammatically;
             ProductDataGrid.Location = new Point(1137, 139);
             ProductDataGrid.Name = "ProductDataGrid";
+            ProductDataGrid.ReadOnly = true;
             ProductDataGrid.RowHeadersVisible = false;
             ProductDataGrid.RowHeadersWidth = 51;
             ProductDataGrid.RowTemplate.Height = 29;
+            ProductDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ProductDataGrid.Size = new Size(1053, 516);
             ProductDataGrid.TabIndex = 2;
             // 

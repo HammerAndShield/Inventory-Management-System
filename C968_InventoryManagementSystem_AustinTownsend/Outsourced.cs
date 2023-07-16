@@ -8,6 +8,6 @@ namespace C968_InventoryManagementSystem_AustinTownsend
 {
     public class Outsourced : Part
     {
-        public string CompanyName { get; set; }
+        public string ?CompanyName { get; set; }
     }
 }
