@@ -34,7 +34,7 @@
             AddPartSaveButton = new Button();
             AddPartMinTextbox = new TextBox();
             AddPartMinLabel = new Label();
-            AddMaxTextbox = new TextBox();
+            AddPartMaxTextbox = new TextBox();
             AddPartMaxLabel = new Label();
             AddPartMachineIDTextbox = new TextBox();
             AddPartMachineIDLabel = new Label();
@@ -59,6 +59,7 @@
             AddPartOutsourcedRadio.TabStop = true;
             AddPartOutsourcedRadio.Text = "Outsourced";
             AddPartOutsourcedRadio.UseVisualStyleBackColor = true;
+            AddPartOutsourcedRadio.CheckedChanged += AddPartOutsourcedRadio_CheckedChanged;
             // 
             // AddPartInHouseRadio
             // 
@@ -70,6 +71,7 @@
             AddPartInHouseRadio.TabStop = true;
             AddPartInHouseRadio.Text = "In-House";
             AddPartInHouseRadio.UseVisualStyleBackColor = true;
+            AddPartInHouseRadio.CheckedChanged += AddPartInHouseRadio_CheckedChanged;
             // 
             // AddPartCancelButton
             // 
@@ -80,6 +82,7 @@
             AddPartCancelButton.TabIndex = 35;
             AddPartCancelButton.Text = "Cancel";
             AddPartCancelButton.UseVisualStyleBackColor = true;
+            AddPartCancelButton.Click += AddPartCancelButton_Click;
             // 
             // AddPartSaveButton
             // 
@@ -90,10 +93,11 @@
             AddPartSaveButton.TabIndex = 34;
             AddPartSaveButton.Text = "Save";
             AddPartSaveButton.UseVisualStyleBackColor = true;
+            AddPartSaveButton.Click += AddPartSaveButton_Click;
             // 
             // AddPartMinTextbox
             // 
-            AddPartMinTextbox.Location = new Point(463, 342);
+            AddPartMinTextbox.Location = new Point(496, 341);
             AddPartMinTextbox.Name = "AddPartMinTextbox";
             AddPartMinTextbox.Size = new Size(93, 27);
             AddPartMinTextbox.TabIndex = 33;
@@ -102,18 +106,18 @@
             // 
             AddPartMinLabel.AutoSize = true;
             AddPartMinLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            AddPartMinLabel.Location = new Point(398, 338);
+            AddPartMinLabel.Location = new Point(431, 337);
             AddPartMinLabel.Name = "AddPartMinLabel";
             AddPartMinLabel.Size = new Size(46, 28);
             AddPartMinLabel.TabIndex = 32;
             AddPartMinLabel.Text = "Min";
             // 
-            // AddMaxTextbox
+            // AddPartMaxTextbox
             // 
-            AddMaxTextbox.Location = new Point(274, 342);
-            AddMaxTextbox.Name = "AddMaxTextbox";
-            AddMaxTextbox.Size = new Size(88, 27);
-            AddMaxTextbox.TabIndex = 31;
+            AddPartMaxTextbox.Location = new Point(307, 341);
+            AddPartMaxTextbox.Name = "AddPartMaxTextbox";
+            AddPartMaxTextbox.Size = new Size(88, 27);
+            AddPartMaxTextbox.TabIndex = 31;
             // 
             // AddPartMaxLabel
             // 
@@ -128,7 +132,7 @@
             // 
             // AddPartMachineIDTextbox
             // 
-            AddPartMachineIDTextbox.Location = new Point(274, 395);
+            AddPartMachineIDTextbox.Location = new Point(307, 394);
             AddPartMachineIDTextbox.Name = "AddPartMachineIDTextbox";
             AddPartMachineIDTextbox.Size = new Size(238, 27);
             AddPartMachineIDTextbox.TabIndex = 29;
@@ -145,7 +149,7 @@
             // 
             // AddPartPriceTextbox
             // 
-            AddPartPriceTextbox.Location = new Point(274, 289);
+            AddPartPriceTextbox.Location = new Point(307, 288);
             AddPartPriceTextbox.Name = "AddPartPriceTextbox";
             AddPartPriceTextbox.Size = new Size(238, 27);
             AddPartPriceTextbox.TabIndex = 27;
@@ -163,7 +167,7 @@
             // 
             // AddPartInventoryTextbox
             // 
-            AddPartInventoryTextbox.Location = new Point(274, 238);
+            AddPartInventoryTextbox.Location = new Point(307, 237);
             AddPartInventoryTextbox.Name = "AddPartInventoryTextbox";
             AddPartInventoryTextbox.Size = new Size(238, 27);
             AddPartInventoryTextbox.TabIndex = 25;
@@ -180,7 +184,7 @@
             // 
             // AddPartNameTextbox
             // 
-            AddPartNameTextbox.Location = new Point(274, 188);
+            AddPartNameTextbox.Location = new Point(307, 187);
             AddPartNameTextbox.Name = "AddPartNameTextbox";
             AddPartNameTextbox.Size = new Size(238, 27);
             AddPartNameTextbox.TabIndex = 23;
@@ -197,7 +201,7 @@
             // 
             // AddPartIDTextbox
             // 
-            AddPartIDTextbox.Location = new Point(274, 140);
+            AddPartIDTextbox.Location = new Point(307, 139);
             AddPartIDTextbox.Name = "AddPartIDTextbox";
             AddPartIDTextbox.Size = new Size(238, 27);
             AddPartIDTextbox.TabIndex = 21;
@@ -233,7 +237,7 @@
             Controls.Add(AddPartSaveButton);
             Controls.Add(AddPartMinTextbox);
             Controls.Add(AddPartMinLabel);
-            Controls.Add(AddMaxTextbox);
+            Controls.Add(AddPartMaxTextbox);
             Controls.Add(AddPartMaxLabel);
             Controls.Add(AddPartMachineIDTextbox);
             Controls.Add(AddPartMachineIDLabel);
@@ -260,7 +264,7 @@
         private Button AddPartSaveButton;
         private TextBox AddPartMinTextbox;
         private Label AddPartMinLabel;
-        private TextBox AddMaxTextbox;
+        private TextBox AddPartMaxTextbox;
         private Label AddPartMaxLabel;
         private TextBox AddPartMachineIDTextbox;
         private Label AddPartMachineIDLabel;

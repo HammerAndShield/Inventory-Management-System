@@ -10,8 +10,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
     public static class Inventory
     {
         public static BindingList<Product> Products { get; set; }
-        public static BindingList<Inhouse> InHouseParts { get; set; }
-        public static BindingList<Outsourced> OutsourcedParts { get; set; }
+        public static BindingList<Part> AllParts { get; set; }
 
         private static int nextPartID = 1;
         private static int nextProductID = 1;
@@ -19,8 +18,7 @@ namespace C968_InventoryManagementSystem_AustinTownsend
         static Inventory()
         {
             Products = new BindingList<Product>();
-            InHouseParts = new BindingList<Inhouse>();
-            OutsourcedParts = new BindingList<Outsourced>();
+            AllParts = new BindingList<Part>();
         }
 
         public static void AddProduct(Product product)
@@ -56,56 +54,30 @@ namespace C968_InventoryManagementSystem_AustinTownsend
             }
         }
 
-        public static void AddPart(Inhouse part)
+
+        public static void AddPart(Part part)
         {
             part.PartID = nextPartID++;
-            InHouseParts.Add(part);
+            AllParts.Add(part);
         }
 
-        public static void AddPart(Outsourced part)
+        public static bool DeletePart(Part part)
         {
-            part.PartID = nextPartID++;
-            OutsourcedParts.Add(part);
-        }
-
-        public static bool DeletePart(Inhouse part)
-        {
-            return InHouseParts.Remove(part);
-        }
-
-        public static bool DeletePart(Outsourced part)
-        {
-            return OutsourcedParts.Remove(part);
+            return AllParts.Remove(part);
         }
 
         public static Part LookupPart(int partId)
         {
-            Part foundPart = InHouseParts.FirstOrDefault(p => p.PartID == partId);
-
-            if (foundPart == null)
-            {
-                foundPart = OutsourcedParts.FirstOrDefault(p => p.PartID == partId);
-            }
-            return foundPart;
+            return AllParts.FirstOrDefault(p => p.PartID == partId);
         }
 
-        public static void UpdatePart(int partId, Inhouse updatedPart)
+        public static void UpdatePart(int partId, Part updatedPart)
         {
-            var part = InHouseParts.FirstOrDefault(p => p.PartID == partId);
+            var part = LookupPart(partId);
             if (part != null)
             {
-                int index = InHouseParts.IndexOf(part);
-                InHouseParts[index] = updatedPart;
-            }
-        }
-
-        public static void UpdatePart(int partId, Outsourced updatedPart)
-        {
-            var part = OutsourcedParts.FirstOrDefault(p => p.PartID == partId);
-            if (part != null)
-            {
-                int index = OutsourcedParts.IndexOf(part);
-                OutsourcedParts[index] = updatedPart;
+                int index = AllParts.IndexOf(part);
+                AllParts[index] = updatedPart;
             }
         }
     }
